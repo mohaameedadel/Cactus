@@ -32,3 +32,52 @@ arrowUp.addEventListener("click", () => {
     behavior: "smooth",
   });
 });
+
+let shop = document.getElementById("shop");
+let sidebar = document.querySelector(".sidebar");
+
+let home = document.getElementById("home");
+let overLay = document.getElementById("overlay");
+
+shop.addEventListener("click", () => {
+  sidebar.classList.toggle("toogle");
+  overLay.classList.toggle("none");
+});
+
+document.addEventListener("keydown", (event) => {
+  if (event.key === "Escape") {
+    sidebar.classList.remove("toogle");
+    overLay.classList.toggle("none");
+  }
+});
+
+let exit = document.querySelector(".arrowss");
+
+exit.addEventListener("click", () => {
+  sidebar.classList.remove("toogle");
+  overLay.classList.toggle("none");
+});
+
+let remove = document.querySelector(".remove");
+
+let item = document.querySelectorAll(".text");
+let shopItem = document.querySelectorAll("#shoop");
+let num = document.querySelector(".num");
+let result = 0;
+num.textContent = result;
+for (let i = 0; i <= shopItem.length; i++) {
+  shopItem[i].addEventListener("click", () => {
+    let f = document.createElement("div");
+    f.innerHTML = item[i].innerHTML;
+    f.className = "cart-item";
+    sidebar.append(f);
+    result++;
+    console.log(result);
+    num.textContent = result;
+    remove.addEventListener("click", () => {
+      f.remove();
+      result = 0;
+      num.textContent = result;
+    });
+  });
+}
